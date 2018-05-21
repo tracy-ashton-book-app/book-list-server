@@ -13,7 +13,10 @@ client.on('error', err => console.error(err));
 
 app.use(cors());
 
-app.get('/', (req, res) => res.send('Testing 1, 2, 3'));
+app.get('/', (req, res) => {
+  res.send('<h1>Testing 1, 2, 3</h1>')
+  console.log('Message sent.')
+});
 
 app.get('*', (res, req) => res.status(403).send('This route does not exist'));
 
