@@ -19,6 +19,15 @@ app.get('/', (req, res) => {
   console.log('Message sent.')
 });
 
+app.get('/test', (req, res) => {
+  client.query('SELECT title FROM books;')
+    .then(result => {
+      console.log(result.rows);
+      res.send(result.rows);
+    })
+    .catch(console.error);
+})
+
 app.get('*', (req, res) => res.status(403).send('This route does not exist'));
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
