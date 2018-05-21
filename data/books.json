@@ -1,0 +1,65 @@
+[
+  {
+    "title": "Lonesome Dove",
+    "author": "Larry McMurtry",
+    "description": "Chronicles a cattle drive in the nineteenth century from Texas to Montana, and follows the lives of Gus and Call, the cowboys heading the drive, Gus's woman, Lorena, and Blue Duck, a sinister Indian renegade.",
+    "image_url": "http://books.google.com/books/content?id=GXYH1C_esq0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "isbn": "ISBN_13 9781439195260"
+  },
+  {
+    "title": "The killer angels",
+    "author": "Michael Shaara",
+    "description": "Portraits of Lee, Longstreet, and other Civil War leaders are interwoven with historical detail to provide a fictional recreation of the bloody battle at Gettysburg",
+    "isbn": "ISBN_13 9780345348104",
+    "image_url": "http://books.google.com/books/content?id=5HskSLGlL_cC&printsec=frontcover&img=1&zoom=5&source=gbs_api"
+  },
+  {
+    "title": "The Stone Diaries",
+    "author": "Carol Shields",
+    "description": "Born in 1905, Daisy Goodwill drifts through the chapters of childhood, marriage, widowhood, remarriage, motherhood and old age. Bewildered by her inability to understand her own role, Daisy attempts to find a way to tell her own story within a novel that is itself about the limitations of autobiography.",
+    "isbn": "ISBN_13 9789462380851",
+    "image_url": "http://books.google.com/books/content?id=zd1JjwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
+  },
+  {
+    "title": "Undaunted Courage",
+    "author": "Stephen E. Ambrose",
+    "description": "From the New York Times bestselling author of Band of Brothers and D-Day, the definitive book on Lewis and Clark’s exploration of the Louisiana Purchase, the most momentous expedition in American history and one of the great adventure stories of all time. In 1803 President Thomas Jefferson selected his personal secretary, Captain Meriwether Lewis, to lead a voyage up the Missouri River to the Rockies, over the mountains, down the Columbia River to the Pacific Ocean, and back. Lewis and his partner, Captain William Clark, made the first map of the trans-Mississippi West, provided invaluable scientific data on the flora and fauna of the Louisiana Purchase territory, and established the American claim to Oregon, Washington, and Idaho. Ambrose has pieced together previously unknown information about weather, terrain, and medical knowledge at the time to provide a vivid backdrop for the expedition. Lewis is supported by a rich variety of colorful characters, first of all Jefferson himself, whose interest in exploring and acquiring the American West went back thirty years. Next comes Clark, a rugged frontiersman whose love for Lewis matched Jefferson’s. There are numerous Indian chiefs, and Sacagawea, the Indian girl who accompanied the expedition, along with the French-Indian hunter Drouillard, the great naturalists of Philadelphia, the French and Spanish fur traders of St. Louis, John Quincy Adams, and many more leading political, scientific, and military figures of the turn of the century. High adventure, high politics, suspense, drama, and diplomacy combine with high romance and personal tragedy to make this outstanding work of scholarship as readable as a novel.",
+    "isbn": "ISBN_13 9781439126172",
+    "image_url": "http://books.google.com/books/content?id=-fbFHCxSv2EC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+  },
+  {
+    "title": "Lincoln",
+    "author": "David Herbert Donald",
+    "description": "A masterful work by Pulitzer Prize–winning author David Herbert Donald, Lincoln is a stunning portrait of Abraham Lincoln’s life and presidency. Donald brilliantly depicts Lincoln’s gradual ascent from humble beginnings in rural Kentucky to the ever-expanding political circles in Illinois, and finally to the presidency of a country divided by civil war. Donald goes beyond biography, illuminating the gradual development of Lincoln’s character, chronicling his tremendous capacity for evolution and growth, thus illustrating what made it possible for a man so inexperienced and so unprepared for the presidency to become a great moral leader. In the most troubled of times, here was a man who led the country out of slavery and preserved a shattered Union—in short, one of the greatest presidents this country has ever seen.",
+    "isbn": "ISBN_13 9781439126288",
+    "image_url": "http://books.google.com/books/content?id=lTQSlhUUEOQC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+  },
+  {
+    "title": "Red Sparrow",
+    "author": "Jason Matthews",
+    "description": "Drafted against her will to serve the regime of Vladimir Putin as an intelligence seductress, Dominika Egorova engages in a charged effort of deception and tradecraft with first-tour CIA officer Nathaniel Nash before a forbidden attraction threatens their careers.",
+    "isbn": "ISBN_13 9781476764177",
+    "image_url": "http://books.google.com/books/content?id=l-lnAwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+  },
+  {
+    "title": "The Name of the Wind",
+    "author": "Patrick Rothfuss",
+    "isbn": "ISBN_13 9781473224087",
+    "image_url": "http://books.google.com/books/content?id=jv5ktAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "description": "Deep below the University, there is a dark place. Few people know of it: a broken web of ancient passageways and abandoned rooms. A young woman lives there, tucked among the sprawling tunnels of the Underthing, snug in the heart of this forgotten place. Her name is Auri, and she is full of mysteries. The Slow Regard of Silent Things is a brief, bittersweet glimpse of Auri's life, a small adventure all her own. At once joyous and haunting, this story offers a chance to see the world through Auri's eyes. And it gives the reader a chance to learn things that only Auri knows.... In this book, Patrick Rothfuss brings us into the world of one of The Kingkiller Chronicle's most enigmatic characters. Full of secrets and mysteries, The Slow Regard of Silent Things is the story of a broken girl trying to live in a broken world."
+  },
+  {
+    "title": "A Clockwork Orange (Restored Text)",
+    "author": "Anthony Burgess",
+    "isbn": "ISBN_13 9780393239195",
+    "image_url": "http://books.google.com/books/content?id=fVnqpwphxeAC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "description": "A newly revised text for A Clockwork Orange's 50th anniversary brings the work closest to its author's intentions. A Clockwork Orange is as brilliant, transgressive, and influential as when it was published fifty years ago. A nightmare vision of the future told in its own fantastically inventive lexicon, it has since become a classic of modern literature and the basis for Stanley Kubrick's once-banned film, whose recent reissue has brought this revolutionary tale on modern civilization to an even wider audience. Andrew Biswell, PhD, director of the International Burgess Foundation, has taken a close look at the three varying published editions alongside the original typescript to recreate the novel as Anthony Burgess envisioned it. We publish this landmark edition with its original British cover and six of Burgess's own illustrations."
+  },
+  {
+    "title": "East of Eden",
+    "author": "John Steinbeck",
+    "isbn": "ISBN_13 9781440631320",
+    "image_url": "http://books.google.com/books/content?id=OPy6E5ZhXs0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "description": "A masterpiece of Biblical scope, and the magnum opus of one of America's most enduring authors, in a commemorative hardcover edition In his journal, Nobel Prize winner John Steinbeck called East of Eden \"the first book,\" and indeed it has the primordial power and simplicity of myth. Set in the rich farmland of California's Salinas Valley, this sprawling and often brutal novel follows the intertwined destinies of two families—the Trasks and the Hamiltons—whose generations helplessly reenact the fall of Adam and Eve and the poisonous rivalry of Cain and Abel. The masterpiece of Steinbeck's later years, East of Eden is a work in which Steinbeck created his most mesmerizing characters and explored his most enduring themes: the mystery of identity, the inexplicability of love, and the murderous consequences of love's absence. Adapted for the 1955 film directed by Elia Kazan introducing James Dean, and read by thousands as the book that brought Oprah's Book Club back, East of Eden has remained vitally present in American culture for over half a century."
+  }
+]
