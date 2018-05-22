@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
   console.log('Message sent.')
 });
 
-app.get('/test', (req, res) => {
-  client.query('SELECT title FROM books;')
+app.get('/api/v1/books', (req, res) => {
+  client.query('SELECT book_id, title, author, image_url FROM books;')
     .then(result => {
       console.log(result.rows);
       res.send(result.rows);
