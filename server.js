@@ -27,7 +27,9 @@ app.get('/api/v1/books', (req, res) => {
     .catch(console.error);
 })
 
-app.get('*', (req, res) => res.status(403).send('This route does not exist'));
+app.get('*', (req, res) => {
+  res.status(404).send('404 Error: Resource not found.');
+});
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
