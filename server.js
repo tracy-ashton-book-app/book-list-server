@@ -42,7 +42,6 @@ function loadBooks() {
     .then(result => {
       if(!parseInt(result.rows[0].count)) {
         fs.readFile('./data/books.json', 'utf8', (err, fd) => {
-          debugger;
           JSON.parse(fd).forEach(ele => {
             let SQL = `
               INSERT INTO books (title, author, isbn, image_url, description)
