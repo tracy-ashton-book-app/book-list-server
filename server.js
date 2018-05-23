@@ -66,7 +66,10 @@ app.post('/api/v1/books', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.redirect('/');
+  // console.log('server end point catchall reached',req.baseUrl,req.url);
+  console.log(req.baseUrl);
+
+  // res.redirect('http://www.google.com');
   // res.status(404).send('404 Error: Resource not found.');
 });
 
