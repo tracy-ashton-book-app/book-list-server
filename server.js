@@ -6,7 +6,7 @@ const pg = require('pg');
 const fs = require('fs');
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
@@ -24,6 +24,16 @@ app.get('/api/v1/books', (req, res) => {
     .then(result => {
       res.send(result.rows);
     })
+    .catch(console.error);
+})
+
+app.get('/api/v1/books/:id', (req, res) => {
+  let SQL = `SELECT book_id, isbn, description 
+    FROM books
+    WHERE book_id = $1;`
+  let values = [req.params.id];
+  client.query(SQL, values)
+    .then(result => res.send(result.rows))
     .catch(console.error);
 })
 
