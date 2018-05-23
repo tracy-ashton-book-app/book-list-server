@@ -42,12 +42,30 @@ app.get('/api/v1/books/:id', (req, res) => {
 app.post('/api/v1/books', (req, res) => {
   console.log('ENTERING app.post /api/v1/books, req.body:',req.body);
   let SQL = 'INSERT INTO books (title, author, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5)';
-  let values = [req.body.title, req.body.author, 
+  let values = [req.body.title, req.body.author,
     req.body.isbn, req.body.image_url, req.body.description];
   client.query(SQL, values)
-    .then ( res.send('Insert succeeded'))
+    .then (queryTwo(req.body.isbn))
     .catch (console.error);
+
+  function queryTwo(isbn) {
+    console.log('query two just fired', isbn);
+    let SQL2 = `
+      SELECT book_id
+      FROM books
+      WHERE isbn=$1
+    ;`;
+    let values = [isbn];
+    client.query(SQL2, values)
+      .then(result => {
+        console.log('returned valeus from query 2: ', result.rows);
+        res.send(result.rows);
+      })
+      .catch(console.error)
+  }
 });
+
+
 
 app.get('*', (req, res) => {
   res.status(404).send('404 Error: Resource not found.');
@@ -88,7 +106,7 @@ function loadDB() {
       book_id SERIAL PRIMARY KEY,
       title VARCHAR(255) NOT NULL,
       author VARCHAR(255) NOT NULL,
-      isbn VARCHAR(255) NOT NULL,
+      isbn VARCHAR(255) NOT NULL UNIQUE,
       image_url VARCHAR(255),
       description TEXT NOT NULL
     );`
