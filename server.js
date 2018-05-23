@@ -40,12 +40,11 @@ app.get('/api/v1/books/:id', (req, res) => {
 })
 
 app.post('/api/v1/books', (req, res) => {
-  console.log('ENTERING app.post /api/v1/books, req.body:',req.body);
+  let {title, author, isbn, image_url, description} = req.body;
   let SQL = 'INSERT INTO books (title, author, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5)';
-  let values = [req.body.title, req.body.author,
-    req.body.isbn, req.body.image_url, req.body.description];
+  let values = [title, author, isbn, image_url, description];
   client.query(SQL, values)
-    .then (queryTwo(req.body.isbn))
+    .then (queryTwo(isbn))
     .catch (console.error);
 
   function queryTwo(isbn) {
