@@ -13,6 +13,8 @@ client.connect();
 client.on('error', err => console.error(err));
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded());
 
 app.get('/', (req, res) => {
   res.send('<h1>Testing 1, 2, 3</h1>')
@@ -36,6 +38,16 @@ app.get('/api/v1/books/:id', (req, res) => {
     .then(result => res.send(result.rows))
     .catch(console.error);
 })
+
+app.post('/api/v1/books', (req, res) => {
+  console.log('ENTERING app.post /api/v1/books, req.body:',req.body);
+  let SQL = 'INSERT INTO books (title, author, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5)';
+  let values = [req.body.title, req.body.author, 
+    req.body.isbn, req.body.image_url, req.body.description];
+  client.query(SQL, values)
+    .then ( res.send('Insert succeeded'))
+    .catch (console.error);
+});
 
 app.get('*', (req, res) => {
   res.status(404).send('404 Error: Resource not found.');
