@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 app.get('/api/v1/books', (req, res) => {
   client.query('SELECT book_id, title, author, image_url FROM books;')
     .then(result => {
+      console.log('someone just got some books!')
       res.send(result.rows);
     })
     .catch(console.error);
@@ -38,6 +39,19 @@ app.get('/api/v1/books/:id', (req, res) => {
     .then(result => res.send(result.rows))
     .catch(console.error);
 })
+
+app.delete('/api/v1/books/:id', (req, res) => {
+  console.log('someone is trying to delete a book', req.params.id);
+  let SQL = `
+    DELETE FROM books
+    WHERE book_id = $1
+  ;`;
+  let values = [req.params.id];
+  client.query(SQL, values)
+    .then(console.log('successfully deleted that book, son! #:',req.params.id))
+    .then(res.send(req.params.id))
+    .catch(console.error);
+});
 
 app.get('/api/v1/admin', (req, res) => {
   res.send(process.env.TOKEN)
