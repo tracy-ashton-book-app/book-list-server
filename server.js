@@ -43,7 +43,6 @@ app.get('/api/v1/books/:id', (req, res) => {
 app.delete('/api/v1/books/:id', (req, res) => {
   let bookId = parseInt(req.params.id);
   console.log(`someone is trying to delete a book! #${bookId}`);
-  console.log(bookId);
   if (!isNaN(bookId)) {
     let SQL = `
       DELETE FROM books
@@ -59,12 +58,30 @@ app.delete('/api/v1/books/:id', (req, res) => {
   }
 });
 
-// app.put('/api/v1/books/:id', (req, res) => {
-//   let bookId = parseInt(req.params.id);
-//   console.log(`here comes a put request!! its for book #${bookId}`);
-//   if () {}
-
-// });
+app.put('/api/v1/books/:id', (req, res) => {
+  let bookId = parseInt(req.params.id);
+  console.log(`here comes a put request!! its for book #${bookId}`);
+  if (!isNaN(bookId)) {
+    let SQL = `
+      UPDATE books
+      SET author=$1, title=$2, isbn=$3, image_url=$4, description=$5
+      WHERE book_id=$6
+    ;`;
+    let values = [
+      req.body.author,
+      req.body.title,
+      req.body.isbn,
+      req.body.image_url,
+      req.body.description,
+      bookId
+    ];
+    client.query(SQL, values)
+      .then(res.status(200).send(`Book #${bookId} successfully updated! Congratulations!`))
+      .catch(console.error)
+  } else {
+    res.send('NOPE! That is not a valid book_id!');
+  }
+});
 
 app.get('/api/v1/admin', (req, res) => {
   res.send(process.env.TOKEN)
