@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 app.get('/api/v1/books', (req, res) => {
   client.query('SELECT book_id, title, author, image_url FROM books;')
     .then(result => {
+      console.log('someone just got some books!')
       res.send(result.rows);
     })
     .catch(console.error);
@@ -39,17 +40,60 @@ app.get('/api/v1/books/:id', (req, res) => {
     .catch(console.error);
 })
 
+app.delete('/api/v1/books/:id', (req, res) => {
+  let bookId = parseInt(req.params.id);
+  console.log(`someone is trying to delete a book! #${bookId}`);
+  if (!isNaN(bookId)) {
+    let SQL = `
+      DELETE FROM books
+      WHERE book_id = $1
+    ;`;
+    let values = [bookId];
+    client.query(SQL, values)
+      .then(console.log(`successfully deleted that book, son! #: ${bookId}`))
+      .then(res.status(204).send(`Book #${bookId} successfully deleted`))
+      .catch(console.error);
+  } else {
+    res.send('YOU FOOL! That is not a valid book_id!');
+  }
+});
+
+app.put('/api/v1/books/:id', (req, res) => {
+  let bookId = parseInt(req.params.id);
+  console.log(`here comes a put request!! its for book #${bookId}`);
+  if (!isNaN(bookId)) {
+    let SQL = `
+      UPDATE books
+      SET author=$1, title=$2, isbn=$3, image_url=$4, description=$5
+      WHERE book_id=$6
+    ;`;
+    let values = [
+      req.body.author,
+      req.body.title,
+      req.body.isbn,
+      req.body.image_url,
+      req.body.description,
+      bookId
+    ];
+    client.query(SQL, values)
+      .then(res.status(200).send(`Book #${bookId} successfully updated! Congratulations!`))
+      .catch(console.error)
+  } else {
+    res.send('NOPE! That is not a valid book_id!');
+  }
+});
+
 app.get('/api/v1/admin', (req, res) => {
   res.send(process.env.TOKEN)
 });
 
 app.post('/api/v1/books', (req, res) => {
-  let {title, author, isbn, image_url, description} = req.body;
+  let { title, author, isbn, image_url, description } = req.body;
   let SQL = 'INSERT INTO books (title, author, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5)';
   let values = [title, author, isbn, image_url, description];
   client.query(SQL, values)
-    .then (queryTwo(isbn))
-    .catch (console.error);
+    .then(queryTwo(isbn))
+    .catch(console.error);
 
   function queryTwo(isbn) {
     let SQL2 = `
@@ -77,9 +121,9 @@ app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
 function loadBooks() {
   let SQL = 'SELECT COUNT(*) FROM books';
-  client.query( SQL )
+  client.query(SQL)
     .then(result => {
-      if(!parseInt(result.rows[0].count)) {
+      if (!parseInt(result.rows[0].count)) {
         fs.readFile('./data/books.json', 'utf8', (err, fd) => {
           JSON.parse(fd).forEach(ele => {
             let SQL = `
@@ -87,7 +131,7 @@ function loadBooks() {
               VALUES ($1, $2, $3, $4, $5)
             `;
             let values = [ele.title, ele.author, ele.isbn, ele.image_url, ele.description];
-            client.query( SQL, values )
+            client.query(SQL, values)
               .catch(console.error);
           })
         })
