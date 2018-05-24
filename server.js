@@ -41,29 +41,42 @@ app.get('/api/v1/books/:id', (req, res) => {
 })
 
 app.delete('/api/v1/books/:id', (req, res) => {
-  console.log('someone is trying to delete a book', req.params.id);
-  let SQL = `
-    DELETE FROM books
-    WHERE book_id = $1
-  ;`;
-  let values = [req.params.id];
-  client.query(SQL, values)
-    .then(console.log('successfully deleted that book, son! #:',req.params.id))
-    .then(res.send(req.params.id))
-    .catch(console.error);
+  let bookId = parseInt(req.params.id);
+  console.log(`someone is trying to delete a book! #${bookId}`);
+  console.log(bookId);
+  if (!isNaN(bookId)) {
+    let SQL = `
+      DELETE FROM books
+      WHERE book_id = $1
+    ;`;
+    let values = [bookId];
+    client.query(SQL, values)
+      .then(console.log(`successfully deleted that book, son! #: ${bookId}`))
+      .then(res.status(204).send(`Book #${bookId} successfully deleted`))
+      .catch(console.error);
+  } else {
+    res.send('YOU FOOL! That is not a valid book_id!');
+  }
 });
+
+// app.put('/api/v1/books/:id', (req, res) => {
+//   let bookId = parseInt(req.params.id);
+//   console.log(`here comes a put request!! its for book #${bookId}`);
+//   if () {}
+
+// });
 
 app.get('/api/v1/admin', (req, res) => {
   res.send(process.env.TOKEN)
 });
 
 app.post('/api/v1/books', (req, res) => {
-  let {title, author, isbn, image_url, description} = req.body;
+  let { title, author, isbn, image_url, description } = req.body;
   let SQL = 'INSERT INTO books (title, author, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5)';
   let values = [title, author, isbn, image_url, description];
   client.query(SQL, values)
-    .then (queryTwo(isbn))
-    .catch (console.error);
+    .then(queryTwo(isbn))
+    .catch(console.error);
 
   function queryTwo(isbn) {
     let SQL2 = `
@@ -91,9 +104,9 @@ app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
 function loadBooks() {
   let SQL = 'SELECT COUNT(*) FROM books';
-  client.query( SQL )
+  client.query(SQL)
     .then(result => {
-      if(!parseInt(result.rows[0].count)) {
+      if (!parseInt(result.rows[0].count)) {
         fs.readFile('./data/books.json', 'utf8', (err, fd) => {
           JSON.parse(fd).forEach(ele => {
             let SQL = `
@@ -101,7 +114,7 @@ function loadBooks() {
               VALUES ($1, $2, $3, $4, $5)
             `;
             let values = [ele.title, ele.author, ele.isbn, ele.image_url, ele.description];
-            client.query( SQL, values )
+            client.query(SQL, values)
               .catch(console.error);
           })
         })
