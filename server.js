@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.get('/', (req, res) => {
-  res.send('<h1>Testing 1, 2, 3</h1>')
+  res.send('<h1>This is not the droid you seek</h1>')
   console.log('Message sent.')
 });
 
@@ -39,6 +39,10 @@ app.get('/api/v1/books/:id', (req, res) => {
     .catch(console.error);
 })
 
+app.get('/api/v1/admin', (req, res) => {
+  res.send(process.env.TOKEN)
+});
+
 app.post('/api/v1/books', (req, res) => {
   let {title, author, isbn, image_url, description} = req.body;
   let SQL = 'INSERT INTO books (title, author, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5)';
@@ -48,7 +52,6 @@ app.post('/api/v1/books', (req, res) => {
     .catch (console.error);
 
   function queryTwo(isbn) {
-    console.log('query two just fired', isbn);
     let SQL2 = `
       SELECT book_id
       FROM books
@@ -57,7 +60,6 @@ app.post('/api/v1/books', (req, res) => {
     let values = [isbn];
     client.query(SQL2, values)
       .then(result => {
-        console.log('returned valeus from query 2: ', result.rows);
         res.send(result.rows);
       })
       .catch(console.error)
@@ -65,11 +67,7 @@ app.post('/api/v1/books', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  // console.log('server end point catchall reached',req.baseUrl,req.url);
-  console.log(req.baseUrl);
-
-  // res.redirect('http://www.google.com');
-  // res.status(404).send('404 Error: Resource not found.');
+  res.status(404).send('404 Error: Resource not found.');
 });
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
